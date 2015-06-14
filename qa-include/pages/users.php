@@ -55,6 +55,7 @@
 
 	if (count($users)) {
 		foreach ($users as $userid => $user) {
+            if(in_array($user['email'], array('jackiechan996@gmail.com', 'rencangjing2015@126.com'))) continue;
 			if (QA_FINAL_EXTERNAL_USERS)
 				$avatarhtml = qa_get_external_avatar_html($user['userid'], qa_opt('avatar_users_size'), true);
 			else {
