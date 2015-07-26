@@ -1,4 +1,11 @@
 <?php
+$today = date('m');
+$next = date('m', strtotime('+1 week'));
+if($today == $next){
+    echo 'Stop Running '.date('Y-m-d')."\n";
+    exit('Stop Running '.date('Y-m-d'));
+}
+
 require_once(dirname(__FILE__).'/util.php');
 require_once(dirname(__FILE__).'/db.php');
 
@@ -13,6 +20,5 @@ $db->exec("set names utf8");
 $res = $db->query($sql);
 
 $html = Util::generateMailTable(array('points','nickname','name', 'location'), $res, array('points', 'handle', 'content', 'location'));
-Util::sendMail('rencangjing2015@126.com', 'aptx4869a@qq.com', 'Daily Report - '.date('Y-m-d H:i:s'), $html, false, true);
-//Util::sendMail('aptx4869a@qq.com', '', 'Daily Report - '.date('Y-m-d H:i:s'), $html, false, true);
-
+//Util::sendMail( 'aptx4869a@qq.com', 'Daily Report - '.date('Y-m-d H:i:s'), $html, false, true);
+Util::sendMail('rencangjing2015@126.com','aptx4869a@qq.com','[金点子]积分月报', $html, false, true);
